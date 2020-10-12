@@ -5,7 +5,7 @@
 
 #include "TerreClass.h"
 
-
+ static terre This;
  int first_terre_age=0; // rolle de symaphore pour ne pas creer plus qu'une seule terre 
 
  static void terre_init(terre *This){
@@ -15,7 +15,7 @@
  }
 
 terre  terre_create(int population,int age){  // methode pour gerer la creation de la terre 
-      terre This;
+     
  	if(first_terre_age==0){ //check if an other 'terre' exist
 	first_terre_age++;
 	This.age=age;
@@ -29,7 +29,7 @@ terre  terre_create(int population,int age){  // methode pour gerer la creation 
  }
  
  void terre_show(terre *This){
- 	  printf("l'age de la terre est:%d \n");
+ 	  printf("l'age de la terre est:%d \n",This->age);
  	  printf("la population de la terre est:%d \n",This->population);
  }
  
@@ -39,8 +39,7 @@ terre  terre_create(int population,int age){  // methode pour gerer la creation 
  }
  
  
- void terre_clear(terre *This){
-       free(This);
+ void terre_clear(){
        first_terre_age--;
  }
  
